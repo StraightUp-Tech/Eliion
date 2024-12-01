@@ -1,0 +1,37 @@
+import tkinter as tk
+from tkinter import messagebox
+import random
+
+def pick_choice():
+    choices = entry.get()
+    options = choices.split(",")
+    
+    if len(options) < 2:
+        messagebox.showwarning("Invalid Input", "Please enter at least two options separated by commas.")
+    else:
+        choice = random.choice(options).strip()
+        result_label.config(text=f"Selected: {choice}")
+
+# Create the main window
+window = tk.Tk()
+window.title("Geepicks - Your Decision Helper")
+window.geometry("400x300")
+
+# Add a description label
+description = tk.Label(window, text="Enter your options separated by commas (e.g., Pizza, Burger, Pasta):", wraplength=350, justify="center")
+description.pack(pady=10)
+
+# Add an entry box for user input
+entry = tk.Entry(window, width=40)
+entry.pack(pady=10)
+
+# Add a button to trigger the picking
+pick_button = tk.Button(window, text="Pick an Option", command=pick_choice)
+pick_button.pack(pady=10)
+
+# Add a label to display the result
+result_label = tk.Label(window, text="", font=("Arial", 14), fg="green")
+result_label.pack(pady=20)
+
+# Run the Tkinter event loop
+window.mainloop()
